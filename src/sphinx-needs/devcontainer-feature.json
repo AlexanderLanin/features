@@ -1,0 +1,24 @@
+{
+    "name": "Sphinx-Needs",
+    "id": "sphinx-needs",
+    "version": "0.0.1",
+    "description": "Install Sphinx-Needs",
+    "documentationURL": "https://github.com/AlexanderLanin/features/tree/main/src/sphinx-needs",
+    "options": {
+        "pdf": {
+            "type": "boolean",
+            "default": false,
+            "description": "Add pdf generation tools (1.2GB extra)."
+        }
+    },
+    "installsAfter": [
+        "python"
+    ],
+    "customizations": {
+        "vscode": {
+          "extensions": [
+            "lextudio.restructuredtext-pack"
+          ]
+        }
+    }
+}
