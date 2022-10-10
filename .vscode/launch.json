@@ -1,0 +1,51 @@
+{
+  "configurations": [
+    {
+      "name": "Test All Features",
+      "type": "node",
+      "program": "/usr/local/share/npm-global/bin/devcontainer",
+      "args": [
+        "features",
+        "test",
+        "--global-scenarios-only",
+        ".",
+      ],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "autoAttachChildProcesses": false,
+      "request": "launch",
+    },
+    {
+      "name": "Test Features (input)",
+      "type": "node",
+      "program": "/usr/local/share/npm-global/bin/devcontainer",
+      "args": [
+        "features",
+        "test",
+        ".",
+        "--features",
+        "${input:selectedFeatures}",
+        "--base-image",
+        "${input:selectedBaseImage}"
+      ],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "autoAttachChildProcesses": false,
+      "request": "launch",
+    }
+  ],
+  "inputs": [
+    {
+      "id": "selectedFeatures",
+      "type": "promptString",
+      "description": "Comma separated list of features to test",
+      "default": "sphinx-needs",
+    },
+    {
+      "id": "selectedBaseImage",
+      "type": "promptString",
+      "description": "Base Image",
+      "default": "mcr.microsoft.com/vscode/devcontainers/base:focal",
+    }
+  ]
+}

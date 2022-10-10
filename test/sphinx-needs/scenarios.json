@@ -1,0 +1,21 @@
+{
+  "ubuntu_18_no_options": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-18.04",
+    "features": {
+      "ghcr.io/devcontainers/features/python:1": {},
+      "sphinx-needs": {}
+    }
+  },
+  "ubuntu_20_no_options": {
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-20.04",
+    "features": {
+      "sphinx-needs": {}
+    }
+  },
+  "python_preinstalled_no_options": {
+    "image": "mcr.microsoft.com/vscode/devcontainers/python:3",
+    "features": {
+      "sphinx-needs": {}
+    }
+  }
+}
