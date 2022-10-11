@@ -1,4 +1,10 @@
 {
+  "java_preinstalled_no_options": {
+    "image": "openjdk:11-jre-slim-buster",
+    "features": {
+      "sphinx-needs": {}
+    }
+  },
   "ubuntu_18_no_options": {
     "image": "mcr.microsoft.com/devcontainers/base:ubuntu-18.04",
     "features": {
