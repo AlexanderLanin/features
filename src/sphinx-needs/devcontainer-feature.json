@@ -11,7 +11,10 @@
       "description": "Add pdf generation tools (1.2GB extra)."
     }
   },
-  "installsAfter": ["ghcr.io/devcontainers/features/python"],
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/python",
+    "ghcr.io/AlexanderLanin/features/plantuml"
+  ],
   "customizations": {
     "vscode": {
       "extensions": ["lextudio.restructuredtext-pack"]
