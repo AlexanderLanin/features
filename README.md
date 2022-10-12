@@ -16,3 +16,14 @@ This repository contains a _collection_ of features. Each sub-section below show
     }
 }
 ```
+
+### `plantuml`
+
+```jsonc
+{
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+    "features": {
+        "ghcr.io/AlexanderLanin/features/plantuml:1": "latest"
+    }
+}
+```
