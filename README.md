@@ -4,7 +4,7 @@
 
 ## Features
 
-This repository contains a _collection_ of two features - `hello` and `color`. These features serve as simple feature implementations.  Each sub-section below shows a sample `devcontainer.json` alongside example usage of the feature.
+This repository contains a _collection_ of features. Each sub-section below shows a sample `devcontainer.json` alongside example usage of the feature.
 
 ### `shinx-needs`
 
