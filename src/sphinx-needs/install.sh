@@ -74,14 +74,9 @@ fi
 if ! type plantuml >/dev/null 2>&1; then
   echo "Installing latest version of plantuml..."
 
-  mkdir -p /usr/share/plantuml
-  wget -c https://github.com/plantuml/plantuml/releases/download/v1.2022.10/plantuml-1.2022.10.jar -O /usr/share/plantuml/plantuml.jar
-
-  cat >/usr/local/bin/plantuml <<EOF
-#!/bin/sh -eu
-java -jar /usr/share/plantuml/plantuml.jar "$@"
-EOF
-  chmod +x /usr/local/bin/plantuml
+  wget -q -O /tmp/build-features/sphinx-needs/install_plantuml.sh "https://raw.githubusercontent.com/AlexanderLanin/features/main/src/plantuml/install.sh"
+  chmod +x /tmp/build-features/sphinx-needs/install_plantuml.sh
+  /tmp/build-features/sphinx-needs/install_plantuml.sh
 
   echo "Installing latest version of plantuml... done"
 fi
