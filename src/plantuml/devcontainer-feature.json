@@ -1,0 +1,19 @@
+{
+  "name": "PlantUML",
+  "id": "plantuml",
+  "version": "0.0.1",
+  "description": "Install PlantUML",
+  "documentationURL": "https://github.com/AlexanderLanin/features/tree/main/src/plantuml",
+  "options": {
+    "version": {
+      "type": "string",
+      "default": "latest",
+      "description": "Specific PlantUML Version or 'latest' for the latest version"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["jebbs.plantuml"]
+    }
+  }
+}

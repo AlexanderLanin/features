@@ -8,13 +8,16 @@ if [ "$(id -u)" -ne 0 ]; then
   exit 1
 fi
 
-# for install log
-mkdir -p /tmp/build-features/sphinx-needs
-
 # Ensure apt is in non-interactive to avoid prompts
 export DEBIAN_FRONTEND=noninteractive
 
 apt-get update -y
+
+if ! type wget >/dev/null 2>&1; then
+  echo "Installing latest stable version of wget..."
+  apt-get -y install --no-install-recommends wget
+  echo "Installing latest stable version of wget... done"
+fi
 
 detect_python_version() {
   if ! command -v python3; then
@@ -39,13 +42,16 @@ fi
 
 if $install_python; then
   echo "Installing latest stable version of python3 + pip3..."
-  apt-get -y install --no-install-recommends python3-pip
+  #apt-get -y install --no-install-recommends python3-pip
+  wget -q -O /tmp/build-features/sphinx-needs/install_python.sh https://raw.githubusercontent.com/devcontainers/features/main/src/python/install.sh
+  chmod +x /tmp/build-features/sphinx-needs/install_python.sh
+  /tmp/build-features/sphinx-needs/install_python.sh
   echo "Installing latest stable version of python3 + pip3... done"
 
   detect_python_version
   if [ "$installed_python_version" -lt "307" ]; then
     # This feature is about sphinx-needs, not python, so we don't want to add add complex python logic here.
-    # There is a dedicated python feature for that!
+    # It will be resolved via https://github.com/devcontainers/features/issues/220 and https://github.com/devcontainers/spec/issues/109
     echo "ERROR: The installed python version is too old ($installed_python_version < 306), this script requires python 3.7 or greater."
     echo "ERROR: Please add python 3.7 or greater to your Docker image or use a python feature like https://github.com/devcontainers/features/tree/main/src/python"
     exit 1
@@ -63,12 +69,6 @@ if ! type graphviz >/dev/null 2>&1; then
   echo "Installing latest stable version of graphviz..."
   apt-get -y install --no-install-recommends graphviz
   echo "Installing latest stable version of graphviz... done"
-fi
-
-if ! type wget >/dev/null 2>&1; then
-  echo "Installing latest stable version of wget..."
-  apt-get -y install --no-install-recommends wget
-  echo "Installing latest stable version of wget... done"
 fi
 
 if ! type plantuml >/dev/null 2>&1; then

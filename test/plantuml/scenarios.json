@@ -1,0 +1,26 @@
+{
+  "java_preinstalled_no_options": {
+    "image": "openjdk:11-jre-slim-buster",
+    "features": {
+      "plantuml": {}
+    }
+  },
+  "ubuntu_18_no_options": {
+    "image": "ubuntu:18.04",
+    "features": {
+      "plantuml": {}
+    }
+  },
+  "ubuntu_20_no_options": {
+    "image": "ubuntu::20.04",
+    "features": {
+      "plantuml": {}
+    }
+  },
+  "ubuntu_22_no_options": {
+    "image": "ubuntu::22.04",
+    "features": {
+      "plantuml": {}
+    }
+  }
+}
