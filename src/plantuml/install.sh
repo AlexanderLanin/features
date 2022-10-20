@@ -1,6 +1,8 @@
 #!/bin/sh
 set -eu
 
+. ./common.sh
+
 echo "Activating feature 'plantuml'..."
 
 if type plantuml >/dev/null 2>&1; then
@@ -18,11 +20,7 @@ install=""
 
 type java >/dev/null 2>&1 || install="$install default-jre"
 type graphviz >/dev/null 2>&1 || install="$install graphviz"
-
-# ToDo: fall back to curl if wget is not available
-if ! type wget >/dev/null 2>&1; then
-  install="${install} wget"
-fi
+type wget >/dev/null || type curl >/dev/null || install="$install wget"
 
 if [ -n "$install" ]; then
   echo "Installing latest stable version of ${install}..."
@@ -36,10 +34,10 @@ fi
 # ToDo: use GitHub API to get latest release and download directly from GitHub
 if [ -n "$VERSION" ] || [ "$VERSION" = "latest" ]; then
   echo "Installing latest stable version of PlantUML..."
-  wget -q -O /usr/local/bin/plantuml.jar "https://sourceforge.net/projects/plantuml/files/plantuml.jar/download"
+  download "https://sourceforge.net/projects/plantuml/files/plantuml.jar/download" /usr/local/bin/plantuml.jar
 else
   echo "Installing PlantUML version ${VERSION}..."
-  wget -q -O /usr/local/bin/plantuml.jar "https://sourceforge.net/projects/plantuml/files/plantuml.${VERSION}.jar/download"
+  download "https://sourceforge.net/projects/plantuml/files/plantuml.${VERSION}.jar/download" /usr/local/bin/plantuml.jar
 fi
 
 cat >/usr/local/bin/plantuml <<EOF
