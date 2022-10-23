@@ -36,7 +36,7 @@ if [ -n "$install" ]; then
 fi
 
 # ToDo: use GitHub API to get latest release and download directly from GitHub
-if [ -n "$VERSION" ] || [ "$VERSION" = "latest" ]; then
+if [ -z "${VERSION:-}" ] || [ "$VERSION" = "latest" ]; then
   echo "Installing latest stable version of PlantUML..."
   download "https://sourceforge.net/projects/plantuml/files/plantuml.jar/download" /usr/local/bin/plantuml.jar
 else
