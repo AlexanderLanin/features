@@ -31,6 +31,8 @@ if [ -n "$install" ]; then
   # ToDo: clean only once at the end and only if update was executed by this script.
   apt-get -y clean
   rm -rf /var/lib/apt/lists/*
+
+  echo "Installing latest stable version of ${install}... done"
 fi
 
 # ToDo: use GitHub API to get latest release and download directly from GitHub
