@@ -8,8 +8,16 @@ if [ "$(id -u)" -ne 0 ]; then
   exit 1
 fi
 
-# Ensure apt is in non-interactive to avoid prompts
-export DEBIAN_FRONTEND=noninteractive
+apt_install() {
+  # Ensure apt is in non-interactive to avoid prompts
+  export DEBIAN_FRONTEND=noninteractive
+
+  echo "Installing latest stable version of $@..."
+  apt-get update
+  apt-get install -y --no-install-recommends $@
+  rm -rf /var/lib/apt/lists/*
+  echo "Installing latest stable version of $@... done"
+}
 
 # arg 1: url
 # arg 2: where to
@@ -19,12 +27,8 @@ download() {
   elif command -v curl; then
     curl -sSL -o $2 $1
   else
-    # ToDo: update always? clean always?
-    apt-get update -y
-    apt-get -y install --no-install-recommends wget
+    apt_install wget ca-certificates openssl
     wget -O $2 $1
-    apt-get clean -y
-    rm -rf /var/lib/apt/lists/*
   fi
 }
 

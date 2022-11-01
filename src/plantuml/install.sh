@@ -23,16 +23,7 @@ type graphviz >/dev/null 2>&1 || install="$install graphviz"
 type wget >/dev/null || type curl >/dev/null || install="$install wget"
 
 if [ -n "$install" ]; then
-  echo "Installing latest stable version of ${install}..."
-  export DEBIAN_FRONTEND=noninteractive
-  apt-get -y update
-  apt-get -y install --no-install-recommends ${install}
-
-  # ToDo: clean only once at the end and only if update was executed by this script.
-  apt-get -y clean
-  rm -rf /var/lib/apt/lists/*
-
-  echo "Installing latest stable version of ${install}... done"
+  apt_install ${install}
 fi
 
 # ToDo: use GitHub API to get latest release and download directly from GitHub

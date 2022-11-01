@@ -1,0 +1,26 @@
+{
+  "name": "Huho",
+  "id": "hugo",
+  "version": "0.0.1",
+  "description": "Install Hugo",
+  "documentationURL": "https://github.com/AlexanderLanin/features/tree/main/src/hugo",
+  "options": {
+    "version": {
+      "type": "string",
+      "default": "latest",
+      "description": "Specific Hugo Version or 'latest' for the latest version"
+    },
+    "extended": {
+      "type": "boolean",
+      "default": false,
+      "description": "Use Hugo or Hugo Extended?"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      // eliostruyf.vscode-front-matter
+      // budparr.language-hugo-vscode
+      "extensions": ["bungcip.better-toml", "davidanson.vscode-markdownlint"]
+    }
+  }
+}
