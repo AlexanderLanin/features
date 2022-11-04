@@ -5,8 +5,10 @@ set -eu
 
 echo "Activating feature 'hugo'..."
 
-echo "Ensuring 'go' is installed..."
-type go >/dev/null 2>&1 || download_and_run_script https://raw.githubusercontent.com/devcontainers/features/main/src/go/install.sh
+# Checking go separately because it may be installed manually and not via apt.
+if ! type go >/dev/null 2>&1; then
+  apt_install golang
+fi
 
 apt_install ca-certificates openssl curl
 

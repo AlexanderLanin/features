@@ -8,15 +8,27 @@ if [ "$(id -u)" -ne 0 ]; then
   exit 1
 fi
 
+apt_get_update() {
+  if [ "$(find /var/lib/apt/lists/* | wc -l)" = "0" ]; then
+    echo "Running apt-get update..."
+    apt-get update -y
+  fi
+}
+
 apt_install() {
   # Ensure apt is in non-interactive to avoid prompts
   export DEBIAN_FRONTEND=noninteractive
 
-  echo "Installing latest stable version of $@..."
-  apt-get update
-  apt-get install -y --no-install-recommends $@
+  if ! dpkg -s "$@" >/dev/null 2>&1; then
+    echo "Installing latest stable version of $@..."
+    apt_get_update
+    apt-get -y install --no-install-recommends "$@"
+    echo "Installing latest stable version of $@... done"
+  fi
+}
+
+apt_get_clean() {
   rm -rf /var/lib/apt/lists/*
-  echo "Installing latest stable version of $@... done"
 }
 
 # arg 1: url

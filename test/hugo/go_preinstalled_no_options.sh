@@ -3,6 +3,7 @@ set -eu
 
 source dev-container-features-test-lib
 
-check "hugo is available" hugo --version
+check "go is available" go version
+check "hugo is available" hugo version
 
 reportResults

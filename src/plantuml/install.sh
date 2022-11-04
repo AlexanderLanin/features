@@ -16,15 +16,9 @@ fi
 
 echo "Checking dependencies..."
 
-install=""
-
-type java >/dev/null 2>&1 || install="$install default-jre"
-type graphviz >/dev/null 2>&1 || install="$install graphviz"
-type wget >/dev/null || type curl >/dev/null || install="$install wget"
-
-if [ -n "$install" ]; then
-  apt_install ${install}
-fi
+type java >/dev/null 2>&1 || apt_install default-jre
+type graphviz >/dev/null 2>&1 || apt_install graphviz
+type wget >/dev/null || type curl >/dev/null || apt_install wget
 
 # ToDo: use GitHub API to get latest release and download directly from GitHub
 if [ -z "${VERSION:-}" ] || [ "$VERSION" = "latest" ]; then
